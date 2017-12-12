@@ -1,0 +1,54 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Item</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-item *ngIf="!isImageUploaded">
+        <ion-thumbnail item-start>
+          <img src="./../../assets/imgs/add_camera.png" (click)="onAddItemImage()">
+        </ion-thumbnail>
+          <h1>Add Item Image</h1>
+      </ion-item>
+      <ion-item *ngIf="isImageUploaded">
+          <ion-thumbnail item-start>
+            <img [src]="base64Image">
+          </ion-thumbnail>
+           
+        </ion-item>
+      
+       <form #f="ngForm" (ngSubmit)="onAddItem(f.value)">
+            <ion-list>
+      <ion-item>
+          <ion-label >Choose Item Category</ion-label>
+         <ion-select name="category" ngModel>
+           <ion-option selected="true" value="Vegetables">Vegetables</ion-option>
+           <ion-option value="Leafy Vegetables">Leafy Vegetables</ion-option>
+           <ion-option value="Fruits">Fruits</ion-option>
+         </ion-select>
+      </ion-item>
+    
+      <ion-item>
+          <ion-label floating>Item Name</ion-label>
+          <ion-input type="text" required name="name" ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>Item Price(per KG)</ion-label>
+          <ion-input type="number" required name="price" ngModel></ion-input>
+      </ion-item>
+    
+    </ion-list>
+ 
+     <button ion-button type="submit" block [disabled]="!f.valid">Add Item</button>
+     
+    </form>
+
+    <ion-fab bottom right padding >
+        <button ion-fab (click)="onCancel()"><ion-icon name="close"></ion-icon></button>
+      </ion-fab>
+</ion-content>

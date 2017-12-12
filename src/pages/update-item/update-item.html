@@ -1,0 +1,39 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Update Item</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form #f1="ngForm" (ngSubmit)="onUpdateItem(f1.value)">
+        <ion-list>
+  <ion-item>
+      <ion-label >Choose Item Category</ion-label>
+     <ion-select name="category" [(ngModel)]="olditem.payload.val().category">
+       <ion-option selected="true" value="Vegetables">Vegetables</ion-option>
+       <ion-option value="Leafy Vegetables">Leafy Vegetables</ion-option>
+       <ion-option value="Fruits">Fruits</ion-option>
+     </ion-select>
+  </ion-item>
+
+  <ion-item>
+      <ion-label floating>Item Name</ion-label>
+      <ion-input type="text" required name="name" [(ngModel)]="olditem.payload.val().details.name"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-label floating>Item Price(per KG)</ion-label>
+      <ion-input type="number" required name="price" [(ngModel)]="olditem.payload.val().details.pricePerKG"></ion-input>
+  </ion-item>
+</ion-list>
+<ion-row>
+  <ion-col><button ion-button type="submit" block [disabled]="!f1.valid">Update Item</button></ion-col>
+  </ion-row>
+</form>
+
+    <ion-fab bottom right padding >
+        <button ion-fab (click)="onCancel()"><ion-icon name="close"></ion-icon></button>
+      </ion-fab>
+</ion-content>
